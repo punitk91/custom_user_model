@@ -72,6 +72,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'greatkart2.wsgi.application'
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+
+AUTH_USER_MODEL = 'accounts.Account'
+
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 

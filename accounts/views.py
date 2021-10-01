@@ -13,3 +13,7 @@ class HelloView(APIView):
         content = {'message': 'Hello, World!'}
         return Response(content)
     
+    
+    
+
+    

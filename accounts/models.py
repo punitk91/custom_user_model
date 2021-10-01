@@ -42,13 +42,13 @@ class MyAccountManger(BaseUserManager):
         
 
 class Account(AbstractBaseUser):
-    
+    #unique_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=100)
     user_name = models.CharField(max_length=100,unique=True)
     email = models.CharField(max_length=100,unique=True)
     phone_number = models.CharField(max_length=100,unique=True)
-    
+
     date_joined = models.CharField(auto_true_now=True)
     last_login = models.DateTimeField(auto_add_now=True)
     is_admin = models.BooleanField(default=False)
@@ -74,6 +74,9 @@ class Account(AbstractBaseUser):
     def has_module_perms(self, add_label):
         return True
     
-    
+class Region(models.model):
+    region_id =  models.Field()
+    region_name = models.CharField(max_length=50)
+    region_pincode = models.CharField(ma)
         
         

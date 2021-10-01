@@ -47,8 +47,8 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=100)
     user_name = models.CharField(max_length=100,unique=True)
     email = models.CharField(max_length=100,unique=True)
+    region = 
     phone_number = models.CharField(max_length=100,unique=True)
-
     date_joined = models.CharField(auto_true_now=True)
     last_login = models.DateTimeField(auto_add_now=True)
     is_admin = models.BooleanField(default=False)
@@ -73,10 +73,22 @@ class Account(AbstractBaseUser):
     
     def has_module_perms(self, add_label):
         return True
+
+
+#Putting this in the same page for now we can put in seprate structure 
+
+class RegionMasterTable(models.model):
+    region_id = models.AutoField(primary_key=True,unique=True)
+    region_name = models.CharField(max_length=200,null= True)
+    region_code = models.CharField(max_length=1000,null=True, blank=True)
     
-class Region(models.model):
-    region_id =  models.Field()
-    region_name = models.CharField(max_length=50)
-    region_pincode = models.CharField(ma)
-        
-        
+    def __str__(self):
+        return self.region_name
+
+class RegionMappingUser(models.model):
+    region_user = models.OneToOneField(Account,default=None, on_delete=models.CASCADE)
+    region = models.ForeignKey(RegionMasterTable, default=None,on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return str(self.region_user)
+    
